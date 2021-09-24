@@ -1,0 +1,62 @@
+Player:
+We changed the attributes playerName, rank, and rehearseChips to private instead of public because we only wanted the player
+class to be able to change the contents of them. We added a finalScore to calculate the overall score of a player at the end
+of the game as well. It was easier to do it in this class instead of doing it in a different class because when we go into a
+player, we have all the necessary info to calculate their scores. We also added a currentScene to find their current scene.
+It was also very beneficial to distributing dollars when an area had more than one actor. Vacating a role was also added to
+remove a role from a player. Lastly, we added deductMoney() and deductCredits() to subtract dollars/credits from a player.
+The reasoning was because when a player upgrades, dollars/credits should be subtracted from them and the info is already
+here so it seems easier to do so in this class. Another method we added was reseting the rehearsal chips so when a player is
+done taking a role, their rehearsal chips should be reset to 0 so it doesn't get carried over to another role. endTurn() was
+removed because we thought it was easier to do it in the main instead of calling this and returning a simple true boolean.
+As for the rest of the other methods, they are just getter and setter methods to grab the attributes of the players.
+
+Scene:
+Removed exist because flipped basically did what exist was going to do. We added a description attribute because we realized
+that the scenes had a description. We also decided to remove shots and numOfExtras because we realized both of them were on
+the board/area, not the scene card. numOfActors was removed. It was intended to count all of the actors, but since extras
+were on the board, we would need to call the board/area which can be quite problematic and unnecessary for the card to know,
+so we moved counting actors to area. This seemed more logical to us since a board should know what scene card is on it. In
+the end, we changed all the attributes to private because the scene card should only change that info. We added a isFlipped()
+method to check if the scene card was flipped/exists. We also added addRole() to be utilized when reading a xml file for
+cards so we can add a starring role to the card. As for the remaining methods, they are just getter and setter methods.
+
+Deadwood:
+Board was changed to Deadwood because this file was given to us and we just decided to set up the board and everything in
+this class. Removed all attributes because none of the attributes are shared throughout this class. Added main() to run the
+program. Added a private getPlayers() to grab the username from the command line and either accepts it and creates a new
+player or not. The reason a new player is not accepted follows with checkUniqueUsername() to see if the name given is unique
+from the other players. Added: a getDocFromFile() to grab the document; readCardDate() to read a xml file of cards;
+setupBoard() to setup the board; totalScenesLeft() to track the number of scenes on the board; playerAreaSetup() to place
+all players in trailer at the start of a day; clearBoard() to clear the scene cards from the board at end of day since there
+is usually a single scene card left; isBoardClear() to check if board is cleared properly; populateAreas() to assign scene
+cards to areas; rewardActors() and rewardExtras() to reward starring actors and extras when there are more than one player
+taking a role in an area; printWinner() to determine and print the winner of the game.
+
+Area:
+Added attributes: name for name of area; roles for extras; changed numOfPlayers to allPlayers for list of players in the
+area instead of a single number; extras for list of players that are extras; shots to keep track of number of shots. These
+attributes are all private because only area needs to change the contents of them. As for methods, we added: addPlayer() to
+add player to the list in the area; removePlayer() to do the opposite of addPlayer; addExtra() to add a player to the list
+of extras when player decides to take a role as an extra; printEligibleRoles() to print the roles a player can take based on
+rank; getEligibleRoles() to return the list of eligible roles of a player; sceneExists() to keep track of whether a scene
+card is in an area; isNeighbor() to return a boolean of whether the player's choice to move is a neighbor of the area they
+are in; isEligibleRole() to return a boolean to make sure the choice of a player is a role they can take; printNeighbors()
+to print neighbors; getAllPlayers() to print all players in the area; clearExtras() to remove all players from the list of
+extras when a scene is wrapped. For the rest of the methods, they are getter and settter methods.
+
+Dice:
+Changed result to return a single roll and added a results array to hold multiple dice rolls. For the array, added a method
+that overrides the original roll by taking in a parameter and returning an array.
+
+Role:
+Added attributes name to hold name of role and added line to hold the string the role says. All attributes are private
+because the role should be the only class to change the info. As for methods, added: isActor() to return a boolean of
+whether the role is a starring role (true) or an extra role (false); isAvailable() to return a boolean of whether the role
+is taken yet; setAvailability() to set the role if it's free/open or not. We removed the method assignRankReq() since we
+could just add the rank when initializing the role. The other methods are just getter and settter methods
+
+Casting Office:
+Removed checkUpgrade() cause we implemented the checking into getOptions(). What getOptions() does is returns a list of the
+ranks a player can upgrade to. Added dollarCost() and creditCost() to return the cost so we could take that integer and
+deduct it from the player. These 2 methods are private because upgradeRank() is the only method that utilizes them.

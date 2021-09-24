@@ -1,0 +1,26 @@
+At the beginning of this assignment, Luther and myself (Don) sought to exercise good design practices (specific to
+minimizing coupling), but experienced some difficulties along the way. In our initial design, we planned to keep data
+private to each class and utilize the main Deadwood class to facilitate the flow of data through each class. While no two
+classes would be sharing any methods or global variables or data structures, this would allow us to develop our code
+exercising only data coupling. Initially, this design goal seemed attainable. Each class was constructed using private
+variables and public functions to access/mutate data, though the data to be used by each class was instantaneous and no
+global variables seemed necessary. Unfortunately, as the deadline approached and there was still much to be done, this
+practice began to slip away from us. Instead, we ended up with a functional game that is pretty highly, commonly coupled.
+Throughout our Deadwood class, we use ArrayLists to store our Players, Roles, Scenes, and Areas (that comprise the board).
+Furthermore, the logic of the gameplay utilizes methods defined in other classes for decision making and to mutate the
+contents of these data structures. Ideally, we would like to revise the code and minimize this coupling, however due to time
+constraints we are unable to.
+
+With respect to cohesion, I would suggest that our design exhibits communicational cohesion. As stated earlier, the use of
+global variables and data structures is not ideal. However, multiple aspects within the system operate on these data
+structures and each offer a contribution to the end result. For instance, The move function in the Player class is
+responsible for allowing Players to update their position, thus updating their eligibility for certain Roles. The Roles
+class uses the Players position and rank to decide whether a Player is allowed to obtain a desired Role and earn money and
+or credits. The selection of a Role and the roles rewards contribute greatly to the points accumulated by each player, which
+effectively is the final result. Each classes of the game must be knowledgable of the data contributed by the other classes.
+It is for this reason that I would argue that our design style exhibits communicational cohesion.
+
+As stated earlier, the implementation of our design did not necessarily follow perfectly the plan we had in place prior to
+development. Due to many circumstances, we made sacrifices to fulfill deadline requirements that were ultimately detrimental
+to creating a program with optimal coupling and cohesion. However, given the completeness and functionality of our program,
+we believe that given the time and circumstances, we accomplished a justifiable design for our version of Deadwood.
