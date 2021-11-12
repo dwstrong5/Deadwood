@@ -1,6 +1,6 @@
 
 
-Authors: Don Strong
+Authors: Luther Nguyen, Don Strong
 
 Project: Deadwood Studios
 
